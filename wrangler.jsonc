@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tinybase-magnet",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-28",
+
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "TINYBASE",
+        "class_name": "TinyBaseDurableObject"
+      }
+    ]
+  },
+
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "TinyBaseDurableObject"
+      ]
+    }
+  ]
+}
