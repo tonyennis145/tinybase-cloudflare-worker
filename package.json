@@ -1,0 +1,10 @@
+{
+  "name": "giga-tinybase",
+  "private": true,
+  "dependencies": {
+    "tinybase": "latest"
+  },
+  "devDependencies": {
+    "wrangler": "latest"
+  }
+}
