@@ -56,7 +56,7 @@ Open the same page in two browsers and changes appear in both. For a local copy 
 
 ## Things to know
 
-- **There's no authentication.** Anyone who knows (or guesses) a room's URL can read and change its data. Use hard-to-guess room names, don't store secrets or personal data, and add a check in the Worker's `fetch` (e.g. a token in the URL) before using it for anything sensitive.
+- **Rooms are open unless you protect them.** Anyone who knows (or guesses) an unprotected room's URL can read and change its data. To lock a room, add a Worker secret named `PROTECTED_ROOMS`: a JSON object of room name to the SHA-256 (hex) of a key, e.g. `{"crm":"9f86d0…"}`. That room then only accepts `wss://…/crm?key=<key>`; a wrong or missing key gets a 403. Use long random keys, and keep secrets and personal data out of unprotected rooms.
 - **Use the same TinyBase version on the server and in clients.** `package.json` installs `latest`; pinning it (e.g. `"tinybase": "10.0.1"`) avoids a server upgrade quietly changing the sync protocol under older clients.
 - **Deleted rows are kept as small "tombstones"** so that every device learns about the deletion. A store that has had lots of rows added and then deleted stays bigger than its live data suggests.
 - **A client that reconnects after making changes offline may not upload them on its own.** The server's catch-up request can time out on large stores. If that matters for your app, have the client compare its data with the server's after reconnecting and re-send anything missing as normal edits.
