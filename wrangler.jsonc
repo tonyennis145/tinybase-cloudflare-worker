@@ -4,6 +4,10 @@
   "main": "src/index.js",
   "compatibility_date": "2026-09-28",
 
+  // Keep variables set in the Cloudflare dashboard when deploying. Without this, every deploy replaces them with the
+  // (empty) list in this file. Secrets are never touched by deploys either way.
+  "keep_vars": true,
+
   "durable_objects": {
     "bindings": [
       {
